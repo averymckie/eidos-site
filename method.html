@@ -3,73 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services │ Eidos Ecosystems Integration Advisory</title>
-  <meta name="description" content="Detailed overview of Eidos services—dependency diagnostics, service-flow redesign, program guardrails, and capability maturation." />
-  <!-- Tailwind CDN + Font Awesome (same as index) -->
+  <title>Method │ Eidos Ecosystems Integration Advisory</title>
+  <meta name="description" content="Discover the four-phase Eidos Method—an evidence-first approach to mastering enterprise dependencies and delivering sustainable transformation." />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>/* re-use the same tailwind.config from index */</script>
-  <style>/* minimal extra styling */
-    .nav-link{position:relative}@media(min-width:768px){.nav-link::after{content:"";position:absolute;width:0;height:2px;bottom:-4px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#3385f0,#14b8a6);transition:width .3s}}.nav-link:hover::after,.nav-link-active::after{width:70%}
-  </style>
+  <style>.nav-link{position:relative}@media(min-width:768px){.nav-link::after{content:"";position:absolute;width:0;height:2px;bottom:-4px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#3385f0,#14b8a6);transition:width .3s}}.nav-link:hover::after,.nav-link-active::after{width:70%}</style>
 </head>
 <body class="bg-secondary-50 text-secondary-700 antialiased">
-  <!-- HEADER (copied from index) -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg shadow-lg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-18">
-      <div class="flex items-center">
-        <a href="/" class="flex items-center gap-2" aria-label="Eidos home">
-          <svg class="h-8 w-8 text-primary-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span class="text-2xl font-bold text-gradient">eidos</span>
-        </a>
-        <nav class="hidden md:ml-12 md:flex md:space-x-10">
-          <a href="/" class="nav-link py-2">Home</a>
-          <a href="/services.html" class="nav-link nav-link-active py-2">Services</a>
-          <a href="/method.html" class="nav-link py-2">Method</a>
-          <a href="/about.html" class="nav-link py-2">About</a>
-        </nav>
-      </div>
-    </div>
+  <!-- Shared header -->
+  <header class="mx-auto max-w-7xl px-4 py-6 flex items-center justify-between">
+    <a href="/" class="text-2xl font-bold text-gradient">eidos</a>
+    <nav class="flex gap-6 text-sm font-semibold">
+      <a href="/"            class="hover:text-primary-600">Home</a>
+      <a href="/method.html" class="hover:text-primary-600 nav-link-active">Method</a>
+      <a href="/about.html"  class="hover:text-primary-600">About</a>
+    </nav>
   </header>
 
-  <!-- MAIN -->
-  <main class="pt-28 pb-20">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-      <h1 class="text-5xl font-bold text-secondary-900 mb-4">Our Services</h1>
-      <p class="text-xl text-secondary-600 max-w-2xl mx-auto">Four modular engagement tracks designed to turn ecosystem friction into measurable advantage.</p>
+  <main class="pt-16 pb-20">
+    <!-- HERO -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20">
+      <h1 class="text-5xl font-bold text-secondary-900 mb-4">The <span class="text-gradient">Eidos Method</span></h1>
+      <p class="text-xl text-secondary-600 max-w-3xl mx-auto">A four-phase, evidence-first approach that exposes critical dependencies, architects cohesive solutions, and transfers capability—so transformation sticks long after the slide deck.</p>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Card 1 -->
-      <div class="bg-white rounded-xl p-8 shadow-soft flex flex-col items-center text-center">
-        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-magnifying-glass-chart fa-2x"></i></div>
-        <h3 class="text-xl font-semibold text-secondary-900 mb-3">Dependency Diagnostics</h3>
-        <p class="text-secondary-600 text-sm">Evidence-based mapping of cross-team, cross-platform touch-points to surface latent risk and value leakage.</p>
+    <!-- 4-phase grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="bg-white rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
+        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-lightbulb fa-2x"></i></div>
+        <h3 class="text-xl font-semibold text-secondary-900 mb-3">1. Illuminate Dependencies</h3>
+        <p class="text-secondary-600 text-sm">Map the hidden links between services, data, processes, and vendors—creating a single source of truth for risk and opportunity.</p>
       </div>
-      <!-- Card 2 -->
-      <div class="bg-white rounded-xl p-8 shadow-soft flex flex-col items-center text-center">
-        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-cubes-stacked fa-2x"></i></div>
-        <h3 class="text-xl font-semibold text-secondary-900 mb-3">Service-Flow Redesign</h3>
-        <p class="text-secondary-600 text-sm">Orchestrate end-to-end value streams—anchored in ITIL 4 and SIAM best practice.</p>
+      <div class="bg-white rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
+        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-cogs fa-2x"></i></div>
+        <h3 class="text-xl font-semibold text-secondary-900 mb-3">2. Analyze Systemic Dynamics</h3>
+        <p class="text-secondary-600 text-sm">Quantify how those dependencies impact performance, cost, risk, and strategic agility—prioritizing the changes that move the needle.</p>
       </div>
-      <!-- Card 3 -->
-      <div class="bg-white rounded-xl p-8 shadow-soft flex flex-col items-center text-center">
-        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-bullseye fa-2x"></i></div>
-        <h3 class="text-xl font-semibold text-secondary-900 mb-3">Program Integration Guardrails</h3>
-        <p class="text-secondary-600 text-sm">Embed governance patterns so multi-vendor deliverables land the first time—no re-work, no finger-pointing.</p>
+      <div class="bg-white rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
+        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-network-wired fa-2x"></i></div>
+        <h3 class="text-xl font-semibold text-secondary-900 mb-3">3. Architect Cohesive Solutions</h3>
+        <p class="text-secondary-600 text-sm">Design service flows, operating models, and governance that proactively manage dependencies and align execution to strategy.</p>
       </div>
-      <!-- Card 4 -->
-      <div class="bg-white rounded-xl p-8 shadow-soft flex flex-col items-center text-center">
-        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-landmark fa-2x"></i></div>
-        <h3 class="text-xl font-semibold text-secondary-900 mb-3">Capability Maturation</h3>
-        <p class="text-secondary-600 text-sm">Road-mapped coaching that lifts teams from ad-hoc coordination to repeatable, metrics-driven excellence.</p>
+      <div class="bg-white rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
+        <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 text-primary-600 mb-6"><i class="fa-solid fa-arrows-rotate fa-2x"></i></div>
+        <h3 class="text-xl font-semibold text-secondary-900 mb-3">4. Embed, Measure, Evolve</h3>
+        <p class="text-secondary-600 text-sm">Implement iteratively, transfer know-how to your teams, and establish metrics that keep the ecosystem resilient and adaptable.</p>
       </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-24">
+      <h2 class="text-3xl font-bold text-secondary-900 mb-4">Ready to put the Method to work?</h2>
+      <p class="text-secondary-600 mb-6">Schedule a discovery call and see how dependency-driven integration accelerates real outcomes.</p>
+      <a href="mailto:info@eidosadvisory.com" class="btn-gradient text-white px-8 py-4 rounded-lg inline-flex items-center justify-center font-semibold shadow-lg">Book a Call</a>
     </section>
   </main>
 
-  <footer class="bg-secondary-900 text-secondary-300 text-center py-6 text-xs">
-    &copy; <span id="yr"></span> EIDOS INC. dba Eidos Ecosystems Integration Advisory — Not affiliated with Parmenides EIDOS or Eidos Tek.
+  <!-- Shared footer with disclaimer -->
+  <footer class="bg-secondary-900 text-center text-secondary-300 py-8 text-xs space-y-2">
+    <div>© <script>document.write(new Date().getFullYear())</script> EIDOS INC. dba Eidos Ecosystems Integration Advisory. All rights reserved.</div>
+    <div class="text-secondary-400 max-w-xl mx-auto px-4">Not affiliated with Parmenides EIDOS GmbH or Eidos Tek LLC.</div>
   </footer>
-  <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
