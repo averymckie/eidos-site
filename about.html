@@ -4,70 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About │ Eidos Ecosystems Integration Advisory</title>
-  <meta name="description" content="Learn the origin story, mission, and team behind Eidos Ecosystems Integration Advisory." />
+  <meta name="description" content="Learn the story, mission, and consulting model behind Eidos Ecosystems Integration Advisory." />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>/* reuse tailwind.conf */</script>
   <style>.nav-link{position:relative}@media(min-width:768px){.nav-link::after{content:"";position:absolute;width:0;height:2px;bottom:-4px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#3385f0,#14b8a6);transition:width .3s}}.nav-link:hover::after,.nav-link-active::after{width:70%}</style>
 </head>
 <body class="bg-secondary-50 text-secondary-700 antialiased">
-<header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-18">
-    <div class="flex items-center">
-      <a href="/" class="flex items-center gap-2" aria-label="Eidos home">
-        <svg class="h-8 w-8 text-primary-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
-        <span class="text-2xl font-bold text-gradient">eidos</span>
-      </a>
-      <nav class="hidden md:ml-12 md:flex md:space-x-10">
-        <a href="/" class="nav-link py-2">Home</a>
-        <a href="/services.html" class="nav-link py-2">Services</a>
-        <a href="/method.html" class="nav-link py-2">Method</a>
-        <a href="/about.html" class="nav-link nav-link-active py-2">About</a>
-      </nav>
-    </div>
-  </div>
-</header>
-<main class="pt-28 pb-20">
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-    <h1 class="text-5xl font-bold text-secondary-900 mb-4">Who We Are</h1>
-    <p class="text-xl text-secondary-600 max-w-2xl mx-auto">A collective of systems thinkers, architects, and service-management nerds on a mission to turn enterprise complexity into strategic clarity.</p>
-  </section>
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
-    <div class="bg-white rounded-xl p-10 shadow-soft border border-secondary-200">
-      <h2 class="text-2xl font-bold mb-4 text-secondary-900">Our Origin Story</h2>
-      <p class="text-secondary-600 mb-4">Eidos started when a few frustrated integration leads realized every “digital transformation” crash-lands on the same hidden dependencies—scattered data, siloed teams, and governance that can’t keep up.</p>
-      <p class="text-secondary-600 mb-4">We codified the patterns that separate resilient ecosystems from brittle ones and built the Eidos Method around them. Today we help telecoms, fintechs, and complex enterprises translate that playbook into real-world gains.</p>
-      <h2 class="text-2xl font-bold mt-8 mb-4 text-secondary-900">Our Mission</h2>
-      <p class="text-secondary-600">Make cohesive performance the default state for every enterprise ecosystem we touch.</p>
-    </div>
-    <div class="space-y-8">
-      <div class="flex items-start">
-        <div class="flex-shrink-0 bg-primary-100 text-primary-600 p-4 rounded-full mr-6"><i class="fa-solid fa-compass-drafting fa-2x"></i></div>
-        <div>
-          <h3 class="font-semibold text-secondary-900 mb-1">Evidence-First Consulting</h3>
-          <p class="text-secondary-600 text-sm">No vibes-based slideware. Every recommendation traces back to mapped dependencies and measurable value impact.</p>
+  <!-- Shared header -->
+  <header class="mx-auto max-w-7xl px-4 py-6 flex items-center justify-between">
+    <a href="/" class="text-2xl font-bold text-gradient">eidos</a>
+    <nav class="flex gap-6 text-sm font-semibold">
+      <a href="/"              class="hover:text-primary-600">Home</a>
+      <a href="/method.html"   class="hover:text-primary-600">Method</a>
+      <a href="/about.html"    class="hover:text-primary-600 nav-link-active">About</a>
+    </nav>
+  </header>
+
+  <main class="pt-16 pb-20">
+    <!-- HERO -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <h1 class="text-5xl font-bold text-secondary-900 mb-4">Who I Am&nbsp;<span class="text-primary-600">&amp; How I Work</span></h1>
+      <p class="text-xl text-secondary-600 max-w-2xl mx-auto">I’m Avery McKie, the integration architect behind <strong>Eidos</strong>. When a project needs deep, specialized expertise, I engage a vetted network of engineers, service-designers, and governance analysts—delivering big-firm capability without big-firm overhead.</p>
+    </section>
+
+    <!-- STORY + VALUES -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left column: narrative -->
+      <div class="bg-white rounded-xl p-10 shadow-soft border border-secondary-200">
+        <h2 class="text-2xl font-bold mb-4 text-secondary-900">Origin Story</h2>
+        <p class="text-secondary-600 mb-4">Eidos took shape after I repeatedly watched transformation programs stall on unseen dependencies—scattered data, siloed accountability, governance that couldn’t keep pace. I codified a practical playbook to surface and manage those hidden links. That framework became the Eidos Method.</p>
+        <p class="text-secondary-600 mb-4">Today I apply that method to help telecoms, fintechs, and complex enterprises hard-wire cohesion into their ecosystems and realize measurable, strategic outcomes.</p>
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-secondary-900">Mission</h2>
+        <p class="text-secondary-600">Make cohesive performance the default state for every enterprise ecosystem I touch.</p>
+      </div>
+
+      <!-- Right column: value cards -->
+      <div class="space-y-8">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-primary-100 text-primary-600 p-4 rounded-full mr-6"><i class="fa-solid fa-compass-drafting fa-2x"></i></div>
+          <div>
+            <h3 class="font-semibold text-secondary-900 mb-1">Evidence-First Consulting</h3>
+            <p class="text-secondary-600 text-sm">Every recommendation maps to a dependency model and a quantified value impact—never slideware guesswork.</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-primary-100 text-primary-600 p-4 rounded-full mr-6"><i class="fa-solid fa-people-group fa-2x"></i></div>
+          <div>
+            <h3 class="font-semibold text-secondary-900 mb-1">Capability Transfer</h3>
+            <p class="text-secondary-600 text-sm">I embed knowledge and coach internal teams so momentum continues long after project close.</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-primary-100 text-primary-600 p-4 rounded-full mr-6"><i class="fa-solid fa-shield-heart fa-2x"></i></div>
+          <div>
+            <h3 class="font-semibold text-secondary-900 mb-1">Vendor-Neutral Integrity</h3>
+            <p class="text-secondary-600 text-sm">Eidos resells no tooling; advice remains agenda-free and aligned solely to client outcomes.</p>
+          </div>
         </div>
       </div>
-      <div class="flex items-start">
-        <div class="flex-shrink-0 bg-primary-100 text-primary-600 p-4 rounded-full mr-6"><i class="fa-solid fa-people-group fa-2x"></i></div>
-        <div>
-          <h3 class="font-semibold text-secondary-900 mb-1">Capability Transfer</h3>
-          <p class="text-secondary-600 text-sm">We coach your teams so momentum lives on long after our exit deck.</p>
-        </div>
-      </div>
-      <div class="flex items-start">
-        <div class="flex-shrink-0 bg-primary-100 text-primary-600 p-4 rounded-full mr-6"><i class="fa-solid fa-shield-heart fa-2x"></i></div>
-        <div>
-          <h3 class="font-semibold text-secondary-900 mb-1">Vendor-Neutral Integrity</h3>
-          <p class="text-secondary-600 text-sm">We’re not reselling tooling, so our advice stays agenda-free.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-<footer class="bg-secondary-900 text-secondary-300 text-center py-6 text-xs">
-  &copy; <span id="yr"></span> EIDOS INC. dba Eidos Ecosystems Integration Advisory — Not affiliated with Parmenides EIDOS or Eidos Tek.
-</footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+    </section>
+  </main>
+
+  <!-- Shared footer with legal note -->
+  <footer class="bg-secondary-900 text-center text-secondary-300 py-8 text-xs space-y-2">
+    <div>© <script>document.write(new Date().getFullYear())</script> EIDOS INC. dba Eidos Ecosystems Integration Advisory. All rights reserved.</div>
+    <div class="text-secondary-400 max-w-xl mx-auto px-4">Not affiliated with Parmenides EIDOS GmbH or Eidos Tek LLC.</div>
+  </footer>
 </body>
 </html>
