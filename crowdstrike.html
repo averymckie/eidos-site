@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CrowdStrike Case Study │ Eidos — How 8.5 Million Computers Crashed in 78 Minutes</title>
+  <title>CrowdStrike Case Study │ Eidos: How 8.5 Million Computers Crashed in 78 Minutes</title>
   <meta name="description" content="Analysis of the CrowdStrike global outage: 8.5 million computers crashed in 78 minutes due to automated update deployment without adequate testing safeguards." />
 
   <!-- FontAwesome + Tailwind -->
@@ -155,10 +155,10 @@
         <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
           <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Failure</h2>
           <p class="text-secondary-700 mb-4">
-            On July 19, 2024, CrowdStrike—a leading cybersecurity company—pushed a routine content update to its Falcon Sensor software. Within 78 minutes, 8.5 million Windows computers worldwide crashed with the infamous "Blue Screen of Death."
+            On July 19, 2024, CrowdStrike, a leading cybersecurity company, pushed a routine content update to its Falcon Sensor software. Within 78 minutes, 8.5 million Windows computers worldwide crashed with the infamous "Blue Screen of Death."
           </p>
           <p class="text-secondary-700 mb-4">
-            The impact was immediate and catastrophic: airlines grounded thousands of flights, hospitals postponed surgeries, emergency 911 systems went offline, banks halted operations, and broadcasters went dark. Microsoft estimated the incident affected less than 1% of Windows machines—but that 1% included critical infrastructure at Fortune 500 companies, hospitals, and government agencies.
+            The impact was immediate and catastrophic: airlines grounded thousands of flights, hospitals postponed surgeries, emergency 911 systems went offline, banks halted operations, and broadcasters went dark. Microsoft estimated the incident affected less than 1% of Windows machines, but that 1% included critical infrastructure at Fortune 500 companies, hospitals, and government agencies.
           </p>
           <p class="text-secondary-700">
             The cause was a faulty configuration update that passed through CrowdStrike's automated testing but crashed when deployed to production machines. The update was pushed globally and simultaneously, with no staged rollout or kill switch.
@@ -184,7 +184,7 @@
             The faulty update passed automated testing. But automated tests can only check for conditions that were anticipated and coded. They cannot exercise human judgment about whether something "seems wrong."
           </p>
           <p class="text-secondary-700">
-            A staged rollout—pushing to a small percentage of machines first and waiting to observe results—would have caught the issue when only thousands of machines were affected, not millions.
+            A staged rollout, pushing to a small percentage of machines first and waiting to observe results, would have caught the issue when only thousands of machines were affected, not millions.
           </p>
         </div>
 
@@ -250,7 +250,7 @@
         <div class="bg-secondary-900 rounded-xl p-8 text-white">
           <h2 class="text-2xl font-bold mb-4">The Lesson</h2>
           <p class="text-secondary-300 mb-4">
-            CrowdStrike's failure demonstrates that automating deployment speed without automating deployment safety creates catastrophic risk. The human feedback loops that naturally existed in slower processes—the ability to notice problems and stop rollouts—must be explicitly designed into automated systems.
+            CrowdStrike's failure demonstrates that automating deployment speed without automating deployment safety creates catastrophic risk. The human feedback loops that naturally existed in slower processes, the ability to notice problems and stop rollouts, must be explicitly designed into automated systems.
           </p>
           <p class="text-white font-semibold">
             When you automate, you're not just replacing human tasks. You're replacing human judgment. That judgment must be explicitly coded, or it disappears entirely.
