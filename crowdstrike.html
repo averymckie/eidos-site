@@ -62,28 +62,39 @@
       100% { background-position: 0% 50%; }
     }
     .text-gradient { background: linear-gradient(90deg, #1554b0, #14b8a6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .dark .text-gradient { background: linear-gradient(90deg, #5aa7ff, #2dd4bf); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .btn-gradient { background-image: linear-gradient(to right, #1967d2, #3385f0); transition: all .3s ease; }
     .btn-gradient:hover { background-image: linear-gradient(to right, #1554b0, #1967d2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    .dark .btn-gradient { background-image: linear-gradient(to right, #3385f0, #5aa7ff); }
+    .dark .btn-gradient:hover { background-image: linear-gradient(to right, #1967d2, #3385f0); }
     .benefit-card { @apply bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors duration-300; }
     .blob { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0; opacity:.3; }
+    .dark .blob { opacity: .2; }
     .card-hover-effect { transition: all .3s ease; }
     .card-hover-effect:hover { transform: translateY(-5px); box-shadow: var(--tw-shadow-card-hover); }
     .nav-link { position: relative; @apply text-secondary-600 hover:text-primary-600 transition-colors duration-200 text-base; }
+    .dark .nav-link { @apply text-secondary-300 hover:text-primary-400; }
     .nav-link::after { content:""; position:absolute; width:0; height:2px; bottom:-4px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#3385f0,#14b8a6); transition:width .3s ease; }
     .nav-link:hover::after,.nav-link-active::after{width:70%}
     .nav-link-active { @apply text-primary-600 font-semibold; }
+    .dark .nav-link-active { @apply text-primary-400; }
     section[id]{scroll-margin-top:72px}
     .section-subtitle { @apply inline-block py-1 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-semibold mb-4 tracking-wider; }
+    .dark .section-subtitle { @apply bg-primary-900/50 text-primary-300; }
     .section-title { @apply text-4xl font-bold text-secondary-900 leading-tight; }
+    .dark .section-title { @apply text-secondary-100; }
     .section-description { @apply mt-4 text-xl text-secondary-600; }
+    .dark .section-description { @apply text-secondary-300; }
+    .dark-mode-toggle { @apply p-2 rounded-lg text-secondary-600 hover:text-primary-600 hover:bg-primary-100 transition-colors duration-200; }
+    .dark .dark-mode-toggle { @apply text-secondary-300 hover:text-primary-400 hover:bg-secondary-800; }
   </style>
 </head>
-<body class="bg-secondary-50 text-secondary-700 antialiased overflow-x-hidden">
+<body class="bg-secondary-50 dark:bg-secondary-950 text-secondary-700 dark:text-secondary-300 antialiased overflow-x-hidden transition-colors duration-300">
 <!-- BLOB BGs - hidden on mobile to prevent overflow -->
 <div class="blob bg-primary-200 w-96 h-96 top-0 left-0 -translate-x-1/2 animate-pulse-slow hidden md:block" style="animation-duration:10s"></div>
 <div class="blob bg-accent-200 w-96 h-96 bottom-0 right-0 translate-x-1/3 translate-y-1/3 animate-pulse-slow hidden md:block" style="animation-duration:12s;animation-delay:2s"></div>
 
-<header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg shadow-lg">
+<header class="fixed top-0 inset-x-0 z-50 bg-white/80 dark:bg-secondary-900/80 backdrop-blur-lg shadow-lg transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-18">
     <div class="flex items-center">
       <a href="index.html" class="flex items-center gap-2 group" aria-label="Eidos home">
@@ -99,8 +110,16 @@
       </nav>
     </div>
 
-    <div class="md:hidden flex items-center">
-      <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-secondary-500 hover:text-primary-600 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors duration-200" aria-controls="mobile-menu" aria-expanded="false">
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-toggle" type="button" class="dark-mode-toggle" aria-label="Toggle dark mode">
+        <svg id="sun-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg id="moon-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+      <button id="mobile-menu-button" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-secondary-500 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-100 dark:hover:bg-secondary-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors duration-200" aria-controls="mobile-menu" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg id="menu-icon-open" class="block h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -113,21 +132,21 @@
   </div>
 
   <div id="mobile-menu" class="hidden md:hidden animate-slide-down">
-    <div class="pt-2 pb-3 space-y-1 bg-white shadow-xl rounded-b-lg mx-2 border border-secondary-200/70">
-      <a href="index.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Home</a>
-      <a href="method.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Method</a>
-      <a href="case-studies.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-primary-600 bg-primary-50 border-l-4 border-primary-500">Case Studies</a>
-      <a href="services.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Services</a>
-      <a href="about.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">About</a>
+    <div class="pt-2 pb-3 space-y-1 bg-white dark:bg-secondary-800 shadow-xl rounded-b-lg mx-2 border border-secondary-200/70 dark:border-secondary-700">
+      <a href="index.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-secondary-700 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Home</a>
+      <a href="method.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-secondary-700 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Method</a>
+      <a href="case-studies.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-secondary-700 border-l-4 border-primary-500">Case Studies</a>
+      <a href="services.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-secondary-700 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Services</a>
+      <a href="about.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-secondary-700 hover:border-l-4 hover:border-primary-500 transition-all duration-200">About</a>
     </div>
   </div>
 </header>
 
 <main>
   <!-- HERO SECTION -->
-  <section class="relative pt-28 lg:pt-32 pb-16 lg:pb-20 overflow-hidden bg-white">
+  <section class="relative pt-28 lg:pt-32 pb-16 lg:pb-20 overflow-hidden bg-white dark:bg-secondary-900 transition-colors duration-300">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <a href="case-studies.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6">
+      <a href="case-studies.html" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 mb-6">
         <i class="fa-solid fa-arrow-left mr-2"></i> Back to Case Studies
       </a>
       <span class="section-subtitle">Case Study</span>
@@ -135,13 +154,13 @@
         How CrowdStrike Crashed 8.5 Million Computers in 78 Minutes
       </h1>
       <div class="flex flex-wrap gap-4 mt-6">
-        <span class="inline-flex items-center py-2 px-4 rounded-full bg-red-100 text-red-700 text-sm font-semibold">
+        <span class="inline-flex items-center py-2 px-4 rounded-full bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 text-sm font-semibold">
           <i class="fa-solid fa-computer mr-2"></i> Devices Crashed: 8.5M
         </span>
-        <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold">
+        <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 text-sm font-semibold">
           <i class="fa-solid fa-stopwatch mr-2"></i> Incident Duration: 78 minutes
         </span>
-        <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold">
+        <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 text-sm font-semibold">
           <i class="fa-solid fa-calendar mr-2"></i> Date: July 19, 2024
         </span>
       </div>
@@ -149,105 +168,105 @@
   </section>
 
   <!-- ARTICLE CONTENT -->
-  <section class="py-12 bg-secondary-50">
+  <section class="py-12 bg-secondary-50 dark:bg-secondary-950 transition-colors duration-300">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <article class="prose prose-lg max-w-none">
-        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
-          <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Failure</h2>
-          <p class="text-secondary-700 mb-4">
+        <div class="bg-white dark:bg-secondary-900 rounded-xl p-8 shadow-lg mb-8 transition-colors duration-300">
+          <h2 class="text-2xl font-bold text-secondary-900 dark:text-secondary-100 mb-4">The Failure</h2>
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             On July 19, 2024, CrowdStrike, a leading cybersecurity company, pushed a routine content update to its Falcon Sensor software. Within 78 minutes, 8.5 million Windows computers worldwide crashed with the infamous "Blue Screen of Death."
           </p>
-          <p class="text-secondary-700 mb-4">
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             The impact was immediate and catastrophic: airlines grounded thousands of flights, hospitals postponed surgeries, emergency 911 systems went offline, banks halted operations, and broadcasters went dark. Microsoft estimated the incident affected less than 1% of Windows machines, but that 1% included critical infrastructure at Fortune 500 companies, hospitals, and government agencies.
           </p>
-          <p class="text-secondary-700">
+          <p class="text-secondary-700 dark:text-secondary-300">
             The cause was a faulty configuration update that passed through CrowdStrike's automated testing but crashed when deployed to production machines. The update was pushed globally and simultaneously, with no staged rollout or kill switch.
           </p>
         </div>
 
-        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
-          <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Structural Analysis</h2>
-          <p class="text-secondary-700 mb-4">
+        <div class="bg-white dark:bg-secondary-900 rounded-xl p-8 shadow-lg mb-8 transition-colors duration-300">
+          <h2 class="text-2xl font-bold text-secondary-900 dark:text-secondary-100 mb-4">The Structural Analysis</h2>
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             CrowdStrike's failure illustrates the danger of automating deployment processes without building in the checks that human-paced operations naturally provide.
           </p>
 
-          <h3 class="text-xl font-semibold text-secondary-900 mt-6 mb-3">The Speed Problem</h3>
-          <p class="text-secondary-700 mb-4">
+          <h3 class="text-xl font-semibold text-secondary-900 dark:text-secondary-100 mt-6 mb-3">The Speed Problem</h3>
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             In a human-paced software deployment, someone notices when early machines start crashing. They call a colleague. Someone investigates. The rollout pauses. This natural feedback loop prevented catastrophic failures for decades.
           </p>
-          <p class="text-secondary-700 mb-4">
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             CrowdStrike automated the speed while removing the feedback loop. Updates pushed to millions of machines simultaneously, faster than any human could observe and react.
           </p>
 
-          <h3 class="text-xl font-semibold text-secondary-900 mt-6 mb-3">The Testing Gap</h3>
-          <p class="text-secondary-700 mb-4">
+          <h3 class="text-xl font-semibold text-secondary-900 dark:text-secondary-100 mt-6 mb-3">The Testing Gap</h3>
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             The faulty update passed automated testing. But automated tests can only check for conditions that were anticipated and coded. They cannot exercise human judgment about whether something "seems wrong."
           </p>
-          <p class="text-secondary-700">
+          <p class="text-secondary-700 dark:text-secondary-300">
             A staged rollout, pushing to a small percentage of machines first and waiting to observe results, would have caught the issue when only thousands of machines were affected, not millions.
           </p>
         </div>
 
-        <div class="bg-red-50 rounded-xl p-8 border-2 border-red-200 mb-8">
-          <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Automation Gap</h2>
+        <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-8 border-2 border-red-200 dark:border-red-800 mb-8 transition-colors duration-300">
+          <h2 class="text-2xl font-bold text-secondary-900 dark:text-secondary-100 mb-4">The Automation Gap</h2>
           <div class="space-y-4">
             <div class="flex items-start">
-              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <i class="fa-solid fa-times-circle text-red-600 dark:text-red-400 mt-1 mr-3 flex-shrink-0"></i>
               <div>
-                <p class="text-secondary-800 font-semibold">Global simultaneous deployment</p>
-                <p class="text-secondary-600 text-sm">Updates pushed to all 8.5 million machines at once, with no staged rollout or geographic phasing.</p>
+                <p class="text-secondary-800 dark:text-secondary-200 font-semibold">Global simultaneous deployment</p>
+                <p class="text-secondary-600 dark:text-secondary-400 text-sm">Updates pushed to all 8.5 million machines at once, with no staged rollout or geographic phasing.</p>
               </div>
             </div>
             <div class="flex items-start">
-              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <i class="fa-solid fa-times-circle text-red-600 dark:text-red-400 mt-1 mr-3 flex-shrink-0"></i>
               <div>
-                <p class="text-secondary-800 font-semibold">No real-time monitoring</p>
-                <p class="text-secondary-600 text-sm">No system watched for crash reports and automatically halted the rollout when anomalies appeared.</p>
+                <p class="text-secondary-800 dark:text-secondary-200 font-semibold">No real-time monitoring</p>
+                <p class="text-secondary-600 dark:text-secondary-400 text-sm">No system watched for crash reports and automatically halted the rollout when anomalies appeared.</p>
               </div>
             </div>
             <div class="flex items-start">
-              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <i class="fa-solid fa-times-circle text-red-600 dark:text-red-400 mt-1 mr-3 flex-shrink-0"></i>
               <div>
-                <p class="text-secondary-800 font-semibold">Automated testing was insufficient</p>
-                <p class="text-secondary-600 text-sm">Tests passed because they tested for known failure modes, not the actual failure that occurred.</p>
+                <p class="text-secondary-800 dark:text-secondary-200 font-semibold">Automated testing was insufficient</p>
+                <p class="text-secondary-600 dark:text-secondary-400 text-sm">Tests passed because they tested for known failure modes, not the actual failure that occurred.</p>
               </div>
             </div>
             <div class="flex items-start">
-              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <i class="fa-solid fa-times-circle text-red-600 dark:text-red-400 mt-1 mr-3 flex-shrink-0"></i>
               <div>
-                <p class="text-secondary-800 font-semibold">Kernel-level access multiplied impact</p>
-                <p class="text-secondary-600 text-sm">The software operated at the kernel level, meaning failures crashed entire operating systems rather than just applications.</p>
+                <p class="text-secondary-800 dark:text-secondary-200 font-semibold">Kernel-level access multiplied impact</p>
+                <p class="text-secondary-600 dark:text-secondary-400 text-sm">The software operated at the kernel level, meaning failures crashed entire operating systems rather than just applications.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
-          <h2 class="text-2xl font-bold text-secondary-900 mb-4">What Structural Assessment Would Have Revealed</h2>
-          <p class="text-secondary-700 mb-4">
+        <div class="bg-white dark:bg-secondary-900 rounded-xl p-8 shadow-lg mb-8 transition-colors duration-300">
+          <h2 class="text-2xl font-bold text-secondary-900 dark:text-secondary-100 mb-4">What Structural Assessment Would Have Revealed</h2>
+          <p class="text-secondary-700 dark:text-secondary-300 mb-4">
             A structural assessment of CrowdStrike's deployment automation would have identified:
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div class="p-4 bg-primary-50 rounded-lg">
-              <h4 class="font-semibold text-secondary-900 mb-2">Missing Rollback Capability</h4>
-              <p class="text-secondary-600 text-sm">The gap between deployment speed and recovery capability. You can push in minutes but recovery requires manual intervention on each machine.</p>
+            <div class="p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg transition-colors duration-300">
+              <h4 class="font-semibold text-secondary-900 dark:text-secondary-100 mb-2">Missing Rollback Capability</h4>
+              <p class="text-secondary-600 dark:text-secondary-400 text-sm">The gap between deployment speed and recovery capability. You can push in minutes but recovery requires manual intervention on each machine.</p>
             </div>
-            <div class="p-4 bg-primary-50 rounded-lg">
-              <h4 class="font-semibold text-secondary-900 mb-2">Blast Radius Analysis</h4>
-              <p class="text-secondary-600 text-sm">What percentage of global critical infrastructure depends on this software? What happens if it all fails simultaneously?</p>
+            <div class="p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg transition-colors duration-300">
+              <h4 class="font-semibold text-secondary-900 dark:text-secondary-100 mb-2">Blast Radius Analysis</h4>
+              <p class="text-secondary-600 dark:text-secondary-400 text-sm">What percentage of global critical infrastructure depends on this software? What happens if it all fails simultaneously?</p>
             </div>
-            <div class="p-4 bg-primary-50 rounded-lg">
-              <h4 class="font-semibold text-secondary-900 mb-2">Human Feedback Loops</h4>
-              <p class="text-secondary-600 text-sm">Where in the deployment process would a human notice problems? Has automation removed those checkpoints?</p>
+            <div class="p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg transition-colors duration-300">
+              <h4 class="font-semibold text-secondary-900 dark:text-secondary-100 mb-2">Human Feedback Loops</h4>
+              <p class="text-secondary-600 dark:text-secondary-400 text-sm">Where in the deployment process would a human notice problems? Has automation removed those checkpoints?</p>
             </div>
-            <div class="p-4 bg-primary-50 rounded-lg">
-              <h4 class="font-semibold text-secondary-900 mb-2">Recommended Path</h4>
-              <p class="text-secondary-600 text-sm">Mandatory staged rollouts with automatic halt on anomaly detection. Never deploy to more than X% of endpoints without human verification.</p>
+            <div class="p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg transition-colors duration-300">
+              <h4 class="font-semibold text-secondary-900 dark:text-secondary-100 mb-2">Recommended Path</h4>
+              <p class="text-secondary-600 dark:text-secondary-400 text-sm">Mandatory staged rollouts with automatic halt on anomaly detection. Never deploy to more than X% of endpoints without human verification.</p>
             </div>
           </div>
         </div>
 
-        <div class="bg-secondary-900 rounded-xl p-8 text-white">
+        <div class="bg-secondary-900 dark:bg-secondary-800 rounded-xl p-8 text-white transition-colors duration-300">
           <h2 class="text-2xl font-bold mb-4">The Lesson</h2>
           <p class="text-secondary-300 mb-4">
             CrowdStrike's failure demonstrates that automating deployment speed without automating deployment safety creates catastrophic risk. The human feedback loops that naturally existed in slower processes, the ability to notice problems and stop rollouts, must be explicitly designed into automated systems.
@@ -261,13 +280,13 @@
   </section>
 
   <!-- NEXT STEPS -->
-  <section class="py-12 bg-white">
+  <section class="py-12 bg-white dark:bg-secondary-900 transition-colors duration-300">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <a href="hertz-accenture.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+        <a href="hertz-accenture.html" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold">
           <i class="fa-solid fa-arrow-left mr-2"></i> Previous: Hertz/Accenture
         </a>
-        <a href="case-studies.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+        <a href="case-studies.html" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold">
           All Case Studies <i class="fa-solid fa-arrow-right ml-2"></i>
         </a>
       </div>
@@ -275,10 +294,10 @@
   </section>
 
   <!-- CTA -->
-  <section class="py-16 bg-secondary-50">
+  <section class="py-16 bg-secondary-50 dark:bg-secondary-950 transition-colors duration-300">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-secondary-900 mb-4">Avoid This Outcome</h2>
-      <p class="text-lg text-secondary-600 mb-8">Get a structural assessment before your next automation investment.</p>
+      <h2 class="text-3xl font-bold text-secondary-900 dark:text-secondary-100 mb-4">Avoid This Outcome</h2>
+      <p class="text-lg text-secondary-600 dark:text-secondary-300 mb-8">Get a structural assessment before your next automation investment.</p>
       <a href="mailto:info@eidosadvisory.com" class="btn-gradient text-white font-semibold rounded-lg px-8 py-4 inline-flex items-center justify-center shadow-lg text-lg">
         Request Assessment <i class="fa-solid fa-arrow-right-long ml-3"></i>
       </a>
@@ -286,12 +305,34 @@
   </section>
 </main>
 
-<footer class="bg-secondary-900 text-secondary-300 text-center py-6 text-xs">
+<footer class="bg-secondary-900 dark:bg-secondary-950 text-secondary-300 text-center py-6 text-xs transition-colors duration-300">
   &copy; <span id="yr"></span> EIDOS INC. dba Eidos Automation Structural Assessment.
 </footer>
 
 <script>
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Dark mode toggle
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const sunIcon = document.getElementById('sun-icon');
+  const moonIcon = document.getElementById('moon-icon');
+  const htmlElement = document.documentElement;
+
+  // Check for saved dark mode preference or default to light mode
+  const currentMode = localStorage.getItem('darkMode') || 'light';
+  if (currentMode === 'dark') {
+    htmlElement.classList.add('dark');
+    sunIcon.classList.remove('hidden');
+    moonIcon.classList.add('hidden');
+  }
+
+  darkModeToggle.addEventListener('click', () => {
+    htmlElement.classList.toggle('dark');
+    const isDark = htmlElement.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
+    sunIcon.classList.toggle('hidden');
+    moonIcon.classList.toggle('hidden');
+  });
 
   // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
