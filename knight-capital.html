@@ -78,10 +78,10 @@
     .section-description { @apply mt-4 text-xl text-secondary-600; }
   </style>
 </head>
-<body class="bg-secondary-50 text-secondary-700 antialiased">
-<!-- BLOB BGs -->
-<div class="blob bg-primary-200 w-96 h-96 top-0 left-0 -translate-x-1/2 animate-pulse-slow" style="animation-duration:10s"></div>
-<div class="blob bg-accent-200 w-96 h-96 bottom-0 right-0 translate-x-1/3 translate-y-1/3 animate-pulse-slow" style="animation-duration:12s;animation-delay:2s"></div>
+<body class="bg-secondary-50 text-secondary-700 antialiased overflow-x-hidden">
+<!-- BLOB BGs - hidden on mobile to prevent overflow -->
+<div class="blob bg-primary-200 w-96 h-96 top-0 left-0 -translate-x-1/2 animate-pulse-slow hidden md:block" style="animation-duration:10s"></div>
+<div class="blob bg-accent-200 w-96 h-96 bottom-0 right-0 translate-x-1/3 translate-y-1/3 animate-pulse-slow hidden md:block" style="animation-duration:12s;animation-delay:2s"></div>
 
 <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-18">
@@ -136,13 +136,13 @@
       </h1>
       <div class="flex flex-wrap gap-4 mt-6">
         <span class="inline-flex items-center py-2 px-4 rounded-full bg-red-100 text-red-700 text-sm font-semibold">
-          <i class="fa-solid fa-dollar-sign mr-2"></i> $440M loss
+          Total Loss: $440M
         </span>
         <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold">
-          <i class="fa-solid fa-clock mr-2"></i> 45 minutes
+          Time to Failure: 45 minutes
         </span>
         <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold">
-          <i class="fa-solid fa-calendar mr-2"></i> August 1, 2012
+          Date: August 1, 2012
         </span>
       </div>
     </div>
