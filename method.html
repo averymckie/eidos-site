@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Method | Eidos Automation Structural Assessment: How We Know What Will Work</title>
-  <meta name="description" content="The method is based on a simple distinction that turns out to predict automation outcomes reliably. We classify decisions as explicit or tacit to determine automation potential." />
+  <meta name="description" content="The approach is grounded in mathematics that has held for a century and validated against 81 historical cases. We examine process structure to predict automation outcomes." />
 
   <!-- FontAwesome + Tailwind -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -92,21 +92,6 @@
     .dark .section-tagline { @apply text-secondary-400; }
     .section-description { @apply mt-4 text-xl text-secondary-600; }
     .dark .section-description { @apply text-secondary-300; }
-    .process-connector {
-      position: absolute;
-      height: 4px;
-      background: linear-gradient(90deg, #3385f0, #14b8a6);
-      top: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      opacity: 0.3;
-    }
-    @media (max-width: 1024px) {
-      .process-connector {
-        display: none;
-      }
-    }
     /* Dark mode toggle */
     .dark-mode-toggle { @apply p-2 rounded-lg transition-colors duration-200; }
     .dark-mode-toggle:hover { @apply bg-secondary-100; }
@@ -175,12 +160,12 @@
   <section class="relative pt-28 lg:pt-32 pb-20 lg:pb-28 overflow-hidden bg-white dark:bg-secondary-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center max-w-3xl mx-auto">
-        <span class="section-subtitle">The Method</span>
+        <span class="section-subtitle">The Approach</span>
         <h1 class="section-title text-5xl md:text-6xl">
           How We Know <span class="text-gradient">What Will Work</span>
         </h1>
         <p class="section-description mt-6 mx-auto">
-          The method is based on a mathematical framework that turns out to predict automation outcomes reliably.
+          The approach is grounded in mathematics that has held for a century and validated against 81 historical cases.
         </p>
       </div>
     </div>
@@ -188,182 +173,104 @@
     <div class="absolute bottom-0 left-0 w-2/5 h-3/4 bg-gradient-to-t from-accent-100/30 dark:from-accent-900/20 to-transparent opacity-50"></div>
   </section>
 
-  <!-- THE DISTINCTION -->
+  <!-- WHY AUTOMATION FAILS -->
   <section class="py-20 bg-secondary-50 dark:bg-secondary-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto mb-16">
-        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
-          Work consists of decisions, and each decision in a process falls into one of two categories.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <div class="bg-accent-50 dark:bg-accent-950/30 rounded-xl p-8 border-2 border-accent-200 dark:border-accent-800">
-          <div class="flex items-center mb-6">
-            <div class="h-14 w-14 rounded-full bg-accent-600 flex items-center justify-center flex-shrink-0 mr-5">
-              <i class="fas fa-check text-2xl text-white"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-secondary-900 dark:text-white">Explicit Decisions</h3>
-          </div>
-          <p class="text-secondary-700 dark:text-secondary-300 mb-6 text-lg">
-            Follow rules that can be written down completely.
-          </p>
-          <div class="space-y-3">
-            <div class="flex items-center">
-              <i class="fas fa-check-circle text-accent-600 dark:text-accent-400 mr-3"></i>
-              <span class="text-secondary-700 dark:text-secondary-300">"If the order exceeds $10,000, require manager approval."</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-check-circle text-accent-600 dark:text-accent-400 mr-3"></i>
-              <span class="text-secondary-700 dark:text-secondary-300">"If payment is received, mark the invoice as paid."</span>
-            </div>
-          </div>
-          <div class="mt-6 p-4 bg-white dark:bg-secondary-800 rounded-lg">
-            <p class="text-accent-700 dark:text-accent-400 font-semibold">These can be automated.</p>
-          </div>
-        </div>
-
-        <div class="bg-red-50 dark:bg-red-950/30 rounded-xl p-8 border-2 border-red-200 dark:border-red-800">
-          <div class="flex items-center mb-6">
-            <div class="h-14 w-14 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0 mr-5">
-              <i class="fas fa-times text-2xl text-white"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-secondary-900 dark:text-white">Tacit Decisions</h3>
-          </div>
-          <p class="text-secondary-700 dark:text-secondary-300 mb-6 text-lg">
-            Require judgment that cannot be fully specified.
-          </p>
-          <div class="space-y-3">
-            <div class="flex items-center">
-              <i class="fas fa-times-circle text-red-600 dark:text-red-400 mr-3"></i>
-              <span class="text-secondary-700 dark:text-secondary-300">"Use your best judgment on exceptions."</span>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-times-circle text-red-600 dark:text-red-400 mr-3"></i>
-              <span class="text-secondary-700 dark:text-secondary-300">"Senior people handle the complicated cases."</span>
-            </div>
-          </div>
-          <div class="mt-6 p-4 bg-white dark:bg-secondary-800 rounded-lg">
-            <p class="text-red-700 dark:text-red-400 font-semibold">These cannot be automated, regardless of what technology you use.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="max-w-4xl mx-auto mt-12">
-        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed">
-          Most processes contain both types. The question is the ratio, and where the tacit decisions occur. A process where tacit judgment concentrates in rare exception handling has a different automation profile than one where it pervades the main workflow.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY THIS WORKS -->
-  <section class="py-20 bg-white dark:bg-secondary-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="section-subtitle">The Science</span>
-        <h2 class="section-title">Why This Works</h2>
-      </div>
-
       <div class="max-w-4xl mx-auto">
+        <span class="section-subtitle">Why Automation Fails</span>
+        <h2 class="section-title mb-8">The Consistent Pattern</h2>
+
         <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
-          The distinction between explicit and tacit knowledge is not new. It traces back to work by Shannon on information theory, Turing on computability, and Wiener on control systems. What they established, in different ways, is that there are mathematical limits to what can be formalized and processed by machines. These limits are not technological; they are structural. No amount of better software changes them.
+          The failure pattern is consistent: projects attempt to automate processes whose underlying logic has never been fully specified. The implementation forces the organization to confront decisions that were previously made by experienced people exercising judgment. Budget and timeline overruns accumulate as those undocumented decisions surface and must be resolved.
+        </p>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
+          This is not a new observation. The mathematical principles were established between 1936 and 1948 by Shannon, Turing, and Wiener. What they demonstrated is that there are structural limits to what can be formalized and processed by machines. These limits are not technological; they are mathematical. No amount of better software changes them.
         </p>
         <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed">
-          What we do is apply this mathematical framework to business processes. We map out where the decisions are, classify each one, and calculate what percentage of the process can actually be automated. The result is not a subjective assessment but a structural analysis grounded in the same mathematics that underpin every computing system.
+          What determines automation success is whether the work has the structural characteristics that support it. Those characteristics are identifiable before you invest.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- THE ASSESSMENT PROCESS -->
-  <section class="py-20 bg-secondary-50 dark:bg-secondary-950 relative">
+  <!-- WHAT WE ASSESS -->
+  <section class="py-20 bg-white dark:bg-secondary-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="section-subtitle">The Assessment Process</span>
-        <h2 class="section-title">Four Steps to Clarity</h2>
-      </div>
+      <div class="max-w-4xl mx-auto">
+        <span class="section-subtitle">What We Assess</span>
+        <h2 class="section-title mb-8">The Structure of Work</h2>
 
-      <div class="relative">
-        <!-- Connectors between process steps (desktop only) -->
-        <div class="process-connector w-3/4 lg:w-5/6"></div>
-
-        <!-- 4 steps grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 relative z-10">
-          <div class="bg-white dark:bg-secondary-800 rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
-            <div class="relative">
-              <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 mb-6">
-                <i class="fa-solid fa-sitemap fa-2x"></i>
-              </div>
-              <div class="absolute -top-2 -right-2 h-8 w-8 flex items-center justify-center rounded-full bg-primary-600 text-white font-bold text-lg">1</div>
-            </div>
-            <h3 class="text-xl font-semibold text-secondary-900 dark:text-white mb-3">Decomposition</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 text-sm">We map the complete process: every decision point, every exception path, every handoff. This often reveals complexity that does not appear in existing documentation because processes evolve faster than their documentation does.</p>
-          </div>
-
-          <div class="bg-white dark:bg-secondary-800 rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
-            <div class="relative">
-              <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 mb-6">
-                <i class="fa-solid fa-code-branch fa-2x"></i>
-              </div>
-              <div class="absolute -top-2 -right-2 h-8 w-8 flex items-center justify-center rounded-full bg-primary-600 text-white font-bold text-lg">2</div>
-            </div>
-            <h3 class="text-xl font-semibold text-secondary-900 dark:text-white mb-3">Classification</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 text-sm">Each decision is classified as explicit (fully rule-based), heuristic (partially specifiable with clear boundaries), or tacit (judgment-based, dependent on experience). The classification follows consistent criteria derived from the mathematical framework.</p>
-          </div>
-
-          <div class="bg-white dark:bg-secondary-800 rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
-            <div class="relative">
-              <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 mb-6">
-                <i class="fa-solid fa-gauge-high fa-2x"></i>
-              </div>
-              <div class="absolute -top-2 -right-2 h-8 w-8 flex items-center justify-center rounded-full bg-primary-600 text-white font-bold text-lg">3</div>
-            </div>
-            <h3 class="text-xl font-semibold text-secondary-900 dark:text-white mb-3">Analysis</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 text-sm">We calculate the ratio of explicit to tacit across the process. We identify where tacit knowledge concentrates. We assess what would break under automation and what dependencies exist that current plans may not account for.</p>
-          </div>
-
-          <div class="bg-white dark:bg-secondary-800 rounded-xl p-8 shadow-soft card-hover-effect flex flex-col items-center text-center">
-            <div class="relative">
-              <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 mb-6">
-                <i class="fa-solid fa-route fa-2x"></i>
-              </div>
-              <div class="absolute -top-2 -right-2 h-8 w-8 flex items-center justify-center rounded-full bg-primary-600 text-white font-bold text-lg">4</div>
-            </div>
-            <h3 class="text-xl font-semibold text-secondary-900 dark:text-white mb-3">Recommendation</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 text-sm">We tell you one of three things: proceed as planned because the structure supports it, restructure the process first to make tacit knowledge explicit, or do not automate this work because the structural barriers cannot be overcome. With the evidence behind the recommendation.</p>
-          </div>
-        </div>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
+          We examine how the work actually operates: where decisions are made, what information flows between steps, what happens when things deviate from the normal path.
+        </p>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
+          The assessment answers specific questions. Which parts of this process have logic that is fully specified? Which parts depend on judgment that has never been documented? Where would automation break because it encounters decisions that require human knowledge to resolve?
+        </p>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed">
+          The output is not a theoretical feasibility study. It is a structural map showing exactly which parts of the process can automate, which parts need modification, and which parts should remain human-operated. With the evidence behind each determination.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- WHAT OTHERS MISS -->
-  <section class="py-20 bg-white dark:bg-secondary-900">
+  <!-- WHAT MAKES THIS DIFFERENT -->
+  <section class="py-20 bg-secondary-50 dark:bg-secondary-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="max-w-4xl mx-auto">
         <span class="section-subtitle">The Difference</span>
-        <h2 class="section-title">What Others Miss</h2>
-      </div>
+        <h2 class="section-title mb-8">What Makes This Different</h2>
 
-      <div class="max-w-4xl mx-auto">
         <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
           Most technology assessments ask whether a given software can handle a given process. This is the wrong question. The right question is whether the process itself is automatable, independent of what technology you use.
         </p>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed">
+          A process that depends on undocumented judgment calls will fail regardless of what software you implement. A process with fully documented logic will likely succeed with any competent implementation. We answer this prior question, telling you whether the conditions for success exist before you evaluate vendors.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE VALIDATION -->
+  <section class="py-20 bg-white dark:bg-secondary-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <span class="section-subtitle">The Validation</span>
+        <h2 class="section-title mb-8">Tested Against History</h2>
+
         <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
-          A process full of undocumented judgment calls will fail regardless of what software you use. A process with fully documented rules will likely succeed with any competent implementation. We answer this prior question, telling you whether the conditions for success exist before you evaluate vendors.
+          The approach has been tested against 81 historical automation cases spanning from 1913 to 2024. The cases include well-documented failures like Phoenix, Knight Capital, and Hertz/Accenture, as well as dozens of less prominent cases across 20 industries. We have also analyzed over 14,000 professional tasks across 175 domains.
+        </p>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed">
+          The patterns that determine success are consistent across every case examined. This is not a claim that the method is perfect. It is a claim that no one has found a case where it fails.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FOUNDATION -->
+  <section class="py-20 bg-secondary-50 dark:bg-secondary-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <span class="section-subtitle">The Foundation</span>
+        <h2 class="section-title mb-8">Built on Public Science</h2>
+
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed mb-8">
+          The underlying principles are not proprietary. Shannon's information theory is public. Turing's work on computability is public. Wiener's cybernetics is public. What we provide is the application of these principles to the specific question of automation outcomes.
+        </p>
+        <p class="text-xl text-secondary-700 dark:text-secondary-300 leading-relaxed">
+          This means the analysis is auditable. We are not asking you to trust a black box. The mathematical foundations you can verify independently. The question is whether they apply to your situation, and our assessment shows you how.
         </p>
       </div>
     </div>
   </section>
 
   <!-- CTA SECTION -->
-  <section class="py-20 bg-secondary-50 dark:bg-secondary-950">
+  <section class="py-20 bg-white dark:bg-secondary-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-secondary-900 rounded-2xl shadow-2xl overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2">
           <div class="p-10 md:p-14 lg:p-20 flex flex-col justify-center">
-            <h2 class="text-4xl font-bold text-white mb-5">Apply the Method</h2>
+            <h2 class="text-4xl font-bold text-white mb-5">Apply the Approach</h2>
             <p class="text-secondary-300 text-lg mb-10">Before your next automation investment, find out whether the structure supports it.</p>
             <div class="flex flex-col sm:flex-row gap-4">
               <a href="mailto:avery@eidosadvisory.com" class="bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg px-8 py-4 inline-flex items-center justify-center shadow-lg transition-colors duration-200 text-lg">
