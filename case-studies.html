@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies │ Eidos Automation Structural Assessment — Lessons from Automation Failures</title>
+  <meta name="description" content="Analysis of major automation failures: Phoenix Payroll, Knight Capital, Hertz/Accenture, and CrowdStrike. Understanding why automation fails when process logic is tacit." />
+
+  <!-- FontAwesome + Tailwind -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config: brand palette & motion -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: "#eef7ff", 100: "#d9edff", 200: "#baddff", 300: "#8ccbff", 400: "#5aa7ff", 500: "#3385f0", 600: "#1967d2", 700: "#1554b0", 800: "#15498f", 900: "#163d70", 950: "#0e2647",
+            },
+            secondary: {
+              50: "#f9fafb", 100: "#f3f4f6", 200: "#e5e7eb", 300: "#d1d5db", 400: "#9ca3af", 500: "#6b7280", 600: "#4b5563", 700: "#374151", 800: "#1f2937", 900: "#111827", 950: "#030712",
+            },
+            accent: {
+              50: "#f0fdfa", 100: "#ccfbf1", 200: "#99f6e4", 300: "#5eead4", 400: "#2dd4bf", 500: "#14b8a6", 600: "#0d9488", 700: "#0f766e", 800: "#115e59", 900: "#134e4a", 950: "#042f2e",
+            },
+          },
+          animation: {
+            "fade-in": "fadeIn .7s ease-in-out",
+            "slide-up": "slideUp .7s ease-in-out",
+            "slide-down": "slideDown .5s ease-in-out",
+            "slide-in-right": "slideInRight .7s ease-out",
+            "pulse-slow": "pulse 4s cubic-bezier(0.4,0,0.6,1) infinite",
+          },
+          keyframes: {
+            fadeIn: { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
+            slideUp: { "0%": { transform: "translateY(30px)", opacity: 0 }, "100%": { transform: "translateY(0)", opacity: 1 } },
+            slideDown: { "0%": { transform: "translateY(-15px)", opacity: 0 }, "100%": { transform: "translateY(0)", opacity: 1 } },
+            slideInRight: { "0%": { transform: "translateX(30px)", opacity: 0 }, "100%": { transform: "translateX(0)", opacity: 1 } },
+          },
+          boxShadow: {
+            soft: "0 10px 50px -12px rgba(0,0,0,.1)",
+            "card-hover": "0 12px 28px -8px rgba(0,0,0,.12)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Brand utility styles -->
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, #1554b0, #1967d2, #14b8a6);
+      background-size: 200% 200%;
+      animation: gradientBG 10s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .text-gradient { background: linear-gradient(90deg, #1554b0, #14b8a6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gradient { background-image: linear-gradient(to right, #1967d2, #3385f0); transition: all .3s ease; }
+    .btn-gradient:hover { background-image: linear-gradient(to right, #1554b0, #1967d2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    .service-card { @apply bg-white rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-full flex flex-col; box-shadow: 0 8px 24px -4px rgba(0,0,0,.08); }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--tw-shadow-card-hover); }
+    .benefit-card { @apply bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors duration-300; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0; opacity:.3; }
+    .card-hover-effect { transition: all .3s ease; }
+    .card-hover-effect:hover { transform: translateY(-5px); box-shadow: var(--tw-shadow-card-hover); }
+    .nav-link { position: relative; @apply text-secondary-600 hover:text-primary-600 transition-colors duration-200 text-base; }
+    .nav-link::after { content:""; position:absolute; width:0; height:2px; bottom:-4px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#3385f0,#14b8a6); transition:width .3s ease; }
+    .nav-link:hover::after,.nav-link-active::after{width:70%}
+    .nav-link-active { @apply text-primary-600 font-semibold; }
+    section[id]{scroll-margin-top:72px}
+    .section-subtitle { @apply inline-block py-1 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-semibold mb-4 tracking-wider; }
+    .section-title { @apply text-4xl font-bold text-secondary-900 leading-tight; }
+    .section-description { @apply mt-4 text-xl text-secondary-600; }
+  </style>
+</head>
+<body class="bg-secondary-50 text-secondary-700 antialiased">
+<!-- BLOB BGs -->
+<div class="blob bg-primary-200 w-96 h-96 top-0 left-0 -translate-x-1/2 animate-pulse-slow" style="animation-duration:10s"></div>
+<div class="blob bg-accent-200 w-96 h-96 bottom-0 right-0 translate-x-1/3 translate-y-1/3 animate-pulse-slow" style="animation-duration:12s;animation-delay:2s"></div>
+
+<header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-18">
+    <div class="flex items-center">
+      <a href="index.html" class="flex items-center gap-2 group" aria-label="Eidos home">
+        <svg class="h-9 w-9 text-primary-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="text-3xl font-bold text-gradient">eidos</span>
+      </a>
+      <nav class="hidden md:ml-12 md:flex md:space-x-10">
+        <a href="index.html" class="nav-link py-2">Home</a>
+        <a href="method.html" class="nav-link py-2">Method</a>
+        <a href="case-studies.html" class="nav-link nav-link-active py-2">Case Studies</a>
+        <a href="services.html" class="nav-link py-2">Services</a>
+        <a href="about.html" class="nav-link py-2">About</a>
+      </nav>
+    </div>
+
+    <div class="md:hidden flex items-center">
+      <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-secondary-500 hover:text-primary-600 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors duration-200" aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg id="menu-icon-open" class="block h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden animate-slide-down">
+    <div class="pt-2 pb-3 space-y-1 bg-white shadow-xl rounded-b-lg mx-2 border border-secondary-200/70">
+      <a href="index.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Home</a>
+      <a href="method.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Method</a>
+      <a href="case-studies.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-primary-600 bg-primary-50 border-l-4 border-primary-500">Case Studies</a>
+      <a href="services.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Services</a>
+      <a href="about.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">About</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO SECTION -->
+  <section class="relative pt-28 lg:pt-32 pb-20 lg:pb-28 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="section-subtitle">Case Studies</span>
+        <h1 class="section-title text-5xl md:text-6xl">
+          <span class="text-gradient">Lessons</span> from Automation Failures
+        </h1>
+        <p class="section-description mt-6 mx-auto">
+          These high-profile disasters share a common root cause: attempting to automate processes where critical logic existed only in human expertise. Each was predictable. Each was preventable.
+        </p>
+      </div>
+    </div>
+    <div class="absolute top-0 right-0 w-2/5 h-full bg-gradient-to-l from-primary-100/30 to-transparent opacity-50"></div>
+    <div class="absolute bottom-0 left-0 w-2/5 h-3/4 bg-gradient-to-t from-accent-100/30 to-transparent opacity-50"></div>
+  </section>
+
+  <!-- CASE STUDIES GRID -->
+  <section class="py-20 bg-secondary-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Phoenix Payroll -->
+        <a href="phoenix-payroll.html" class="bg-white rounded-xl overflow-hidden shadow-lg card-hover-effect block group">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-6">
+              <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-sm font-semibold">Government</span>
+              <span class="text-3xl font-bold text-primary-600">$2.2B+</span>
+            </div>
+            <h2 class="text-2xl font-bold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors">Phoenix Payroll</h2>
+            <h3 class="text-lg text-secondary-700 mb-4">Why Canada's Phoenix Payroll System Still Can't Pay People After Nine Years</h3>
+            <p class="text-secondary-600 mb-6">
+              The Canadian government's attempt to automate payroll for 300,000+ federal employees became one of the largest IT failures in history. The system still generates errors today.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center text-secondary-500 text-sm">
+                <i class="fa-solid fa-clock mr-2"></i>
+                <span>9+ years ongoing</span>
+              </div>
+              <span class="inline-flex items-center text-primary-600 font-semibold group-hover:translate-x-2 transition-transform">
+                Read analysis <i class="fa-solid fa-arrow-right ml-2"></i>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Knight Capital -->
+        <a href="knight-capital.html" class="bg-white rounded-xl overflow-hidden shadow-lg card-hover-effect block group">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-6">
+              <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-sm font-semibold">Financial Services</span>
+              <span class="text-3xl font-bold text-primary-600">$440M</span>
+            </div>
+            <h2 class="text-2xl font-bold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors">Knight Capital</h2>
+            <h3 class="text-lg text-secondary-700 mb-4">How Knight Capital Lost $440 Million in 45 Minutes</h3>
+            <p class="text-secondary-600 mb-6">
+              A software deployment gone wrong triggered a cascade of erroneous trades that destroyed a $400M market-making firm in less than an hour. The company was sold within days.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center text-secondary-500 text-sm">
+                <i class="fa-solid fa-clock mr-2"></i>
+                <span>45 minutes to failure</span>
+              </div>
+              <span class="inline-flex items-center text-primary-600 font-semibold group-hover:translate-x-2 transition-transform">
+                Read analysis <i class="fa-solid fa-arrow-right ml-2"></i>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hertz/Accenture -->
+        <a href="hertz-accenture.html" class="bg-white rounded-xl overflow-hidden shadow-lg card-hover-effect block group">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-6">
+              <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-sm font-semibold">Enterprise</span>
+              <span class="text-3xl font-bold text-primary-600">$32M</span>
+            </div>
+            <h2 class="text-2xl font-bold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors">Hertz/Accenture</h2>
+            <h3 class="text-lg text-secondary-700 mb-4">How Hertz Paid $32 Million for a Website That Never Launched</h3>
+            <p class="text-secondary-600 mb-6">
+              A straightforward website redesign turned into a multi-year debacle, ending in litigation. The project was ultimately abandoned without a working product.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center text-secondary-500 text-sm">
+                <i class="fa-solid fa-clock mr-2"></i>
+                <span>3+ years, no delivery</span>
+              </div>
+              <span class="inline-flex items-center text-primary-600 font-semibold group-hover:translate-x-2 transition-transform">
+                Read analysis <i class="fa-solid fa-arrow-right ml-2"></i>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- CrowdStrike -->
+        <a href="crowdstrike.html" class="bg-white rounded-xl overflow-hidden shadow-lg card-hover-effect block group">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-6">
+              <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-sm font-semibold">Technology</span>
+              <span class="text-3xl font-bold text-primary-600">8.5M</span>
+            </div>
+            <h2 class="text-2xl font-bold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors">CrowdStrike</h2>
+            <h3 class="text-lg text-secondary-700 mb-4">How CrowdStrike Crashed 8.5 Million Computers in 78 Minutes</h3>
+            <p class="text-secondary-600 mb-6">
+              A faulty software update from a leading security vendor triggered the largest IT outage in history, grounding flights, halting hospitals, and disrupting businesses worldwide.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center text-secondary-500 text-sm">
+                <i class="fa-solid fa-clock mr-2"></i>
+                <span>78 minutes to global impact</span>
+              </div>
+              <span class="inline-flex items-center text-primary-600 font-semibold group-hover:translate-x-2 transition-transform">
+                Read analysis <i class="fa-solid fa-arrow-right ml-2"></i>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMON PATTERNS -->
+  <section class="py-20 hero-gradient text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-secondary-900/40 backdrop-blur-md"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-sm font-semibold mb-4 tracking-wider">The Pattern</span>
+        <h2 class="text-4xl font-bold">What These Failures Share</h2>
+        <p class="mt-4 text-xl text-white/90">Different industries, different technologies, same fundamental mistake.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="benefit-card">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white/20 text-white mx-auto mb-6 shadow-lg">
+            <i class="fa-solid fa-brain fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold text-center mb-2">Tacit Knowledge Ignored</h3>
+          <p class="text-white/80 text-center text-sm">In every case, critical process logic existed only in the heads of experienced workers. This knowledge was never successfully captured or codified.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white/20 text-white mx-auto mb-6 shadow-lg">
+            <i class="fa-solid fa-route fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold text-center mb-2">Exception Paths Overlooked</h3>
+          <p class="text-white/80 text-center text-sm">The "happy path" was automated, but the hundreds of edge cases that experienced staff handled automatically were not addressed.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white/20 text-white mx-auto mb-6 shadow-lg">
+            <i class="fa-solid fa-gauge-high fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold text-center mb-2">Complexity Underestimated</h3>
+          <p class="text-white/80 text-center text-sm">Vendors and executives saw surface simplicity. The structural analysis that would have revealed true complexity was never performed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-secondary-900 rounded-2xl shadow-2xl overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="p-10 md:p-14 lg:p-20 flex flex-col justify-center">
+            <h2 class="text-4xl font-bold text-white mb-5">Don't Become a Case Study</h2>
+            <p class="text-secondary-300 text-lg mb-10">Every one of these failures was predictable before investment was committed. Our structural assessment reveals the same risks in your automation initiatives—before they become expensive lessons.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="mailto:info@eidosadvisory.com" class="bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg px-8 py-4 inline-flex items-center justify-center shadow-lg transition-colors duration-200 text-lg">
+                Request Assessment
+              </a>
+              <a href="method.html" class="bg-transparent border-2 border-white/40 hover:bg-white/10 text-white font-semibold rounded-lg px-8 py-4 inline-flex items-center justify-center transition-colors duration-200 text-lg">
+                Learn Our Method
+              </a>
+            </div>
+          </div>
+          <div class="bg-secondary-800 p-10 md:p-14 lg:p-20 flex items-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M 12 0 L 0 0 0 12" fill="none" stroke="white" stroke-width="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)"/></svg>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 relative z-10 max-w-md mx-auto shadow-xl">
+              <svg class="w-14 h-14 text-primary-500 absolute -top-7 -left-7" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+              <div class="text-white text-xl italic mb-4 leading-relaxed">"The most expensive lesson in automation is the one you learn after the money is spent."</div>
+              <div class="flex items-center mt-6">
+                <div class="ml-4"><div class="text-white font-semibold">The Eidos Principle</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-secondary-900 text-secondary-300 text-center py-6 text-xs">
+  &copy; <span id="yr"></span> EIDOS INC. dba Eidos Automation Structural Assessment.
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+
+  function toggleMenu() {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+  }
+
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener('click', toggleMenu);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phoenix Payroll Case Study │ Eidos — Why Canada's Pay System Still Can't Pay People</title>
+  <meta name="description" content="Analysis of Canada's Phoenix Payroll disaster: a $2.2B+ failure caused by attempting to automate payroll processes where critical logic was tacit, not explicit." />
+
+  <!-- FontAwesome + Tailwind -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config: brand palette & motion -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: "#eef7ff", 100: "#d9edff", 200: "#baddff", 300: "#8ccbff", 400: "#5aa7ff", 500: "#3385f0", 600: "#1967d2", 700: "#1554b0", 800: "#15498f", 900: "#163d70", 950: "#0e2647",
+            },
+            secondary: {
+              50: "#f9fafb", 100: "#f3f4f6", 200: "#e5e7eb", 300: "#d1d5db", 400: "#9ca3af", 500: "#6b7280", 600: "#4b5563", 700: "#374151", 800: "#1f2937", 900: "#111827", 950: "#030712",
+            },
+            accent: {
+              50: "#f0fdfa", 100: "#ccfbf1", 200: "#99f6e4", 300: "#5eead4", 400: "#2dd4bf", 500: "#14b8a6", 600: "#0d9488", 700: "#0f766e", 800: "#115e59", 900: "#134e4a", 950: "#042f2e",
+            },
+          },
+          animation: {
+            "fade-in": "fadeIn .7s ease-in-out",
+            "slide-up": "slideUp .7s ease-in-out",
+            "slide-down": "slideDown .5s ease-in-out",
+            "slide-in-right": "slideInRight .7s ease-out",
+            "pulse-slow": "pulse 4s cubic-bezier(0.4,0,0.6,1) infinite",
+          },
+          keyframes: {
+            fadeIn: { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
+            slideUp: { "0%": { transform: "translateY(30px)", opacity: 0 }, "100%": { transform: "translateY(0)", opacity: 1 } },
+            slideDown: { "0%": { transform: "translateY(-15px)", opacity: 0 }, "100%": { transform: "translateY(0)", opacity: 1 } },
+            slideInRight: { "0%": { transform: "translateX(30px)", opacity: 0 }, "100%": { transform: "translateX(0)", opacity: 1 } },
+          },
+          boxShadow: {
+            soft: "0 10px 50px -12px rgba(0,0,0,.1)",
+            "card-hover": "0 12px 28px -8px rgba(0,0,0,.12)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Brand utility styles -->
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, #1554b0, #1967d2, #14b8a6);
+      background-size: 200% 200%;
+      animation: gradientBG 10s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .text-gradient { background: linear-gradient(90deg, #1554b0, #14b8a6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .btn-gradient { background-image: linear-gradient(to right, #1967d2, #3385f0); transition: all .3s ease; }
+    .btn-gradient:hover { background-image: linear-gradient(to right, #1554b0, #1967d2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    .benefit-card { @apply bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors duration-300; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0; opacity:.3; }
+    .card-hover-effect { transition: all .3s ease; }
+    .card-hover-effect:hover { transform: translateY(-5px); box-shadow: var(--tw-shadow-card-hover); }
+    .nav-link { position: relative; @apply text-secondary-600 hover:text-primary-600 transition-colors duration-200 text-base; }
+    .nav-link::after { content:""; position:absolute; width:0; height:2px; bottom:-4px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#3385f0,#14b8a6); transition:width .3s ease; }
+    .nav-link:hover::after,.nav-link-active::after{width:70%}
+    .nav-link-active { @apply text-primary-600 font-semibold; }
+    section[id]{scroll-margin-top:72px}
+    .section-subtitle { @apply inline-block py-1 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-semibold mb-4 tracking-wider; }
+    .section-title { @apply text-4xl font-bold text-secondary-900 leading-tight; }
+    .section-description { @apply mt-4 text-xl text-secondary-600; }
+  </style>
+</head>
+<body class="bg-secondary-50 text-secondary-700 antialiased">
+<!-- BLOB BGs -->
+<div class="blob bg-primary-200 w-96 h-96 top-0 left-0 -translate-x-1/2 animate-pulse-slow" style="animation-duration:10s"></div>
+<div class="blob bg-accent-200 w-96 h-96 bottom-0 right-0 translate-x-1/3 translate-y-1/3 animate-pulse-slow" style="animation-duration:12s;animation-delay:2s"></div>
+
+<header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-18">
+    <div class="flex items-center">
+      <a href="index.html" class="flex items-center gap-2 group" aria-label="Eidos home">
+        <svg class="h-9 w-9 text-primary-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="text-3xl font-bold text-gradient">eidos</span>
+      </a>
+      <nav class="hidden md:ml-12 md:flex md:space-x-10">
+        <a href="index.html" class="nav-link py-2">Home</a>
+        <a href="method.html" class="nav-link py-2">Method</a>
+        <a href="case-studies.html" class="nav-link nav-link-active py-2">Case Studies</a>
+        <a href="services.html" class="nav-link py-2">Services</a>
+        <a href="about.html" class="nav-link py-2">About</a>
+      </nav>
+    </div>
+
+    <div class="md:hidden flex items-center">
+      <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-secondary-500 hover:text-primary-600 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors duration-200" aria-controls="mobile-menu" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg id="menu-icon-open" class="block h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden animate-slide-down">
+    <div class="pt-2 pb-3 space-y-1 bg-white shadow-xl rounded-b-lg mx-2 border border-secondary-200/70">
+      <a href="index.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Home</a>
+      <a href="method.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Method</a>
+      <a href="case-studies.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-primary-600 bg-primary-50 border-l-4 border-primary-500">Case Studies</a>
+      <a href="services.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">Services</a>
+      <a href="about.html" class="mobile-nav-link block pl-4 pr-4 py-3 text-base font-medium text-secondary-700 hover:text-primary-600 hover:bg-primary-50 hover:border-l-4 hover:border-primary-500 transition-all duration-200">About</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO SECTION -->
+  <section class="relative pt-28 lg:pt-32 pb-16 lg:pb-20 overflow-hidden bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <a href="case-studies.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6">
+        <i class="fa-solid fa-arrow-left mr-2"></i> Back to Case Studies
+      </a>
+      <span class="section-subtitle">Case Study</span>
+      <h1 class="section-title text-4xl md:text-5xl">
+        Why Canada's Phoenix Payroll System Still Can't Pay People After Nine Years
+      </h1>
+      <div class="flex flex-wrap gap-4 mt-6">
+        <span class="inline-flex items-center py-2 px-4 rounded-full bg-red-100 text-red-700 text-sm font-semibold">
+          <i class="fa-solid fa-dollar-sign mr-2"></i> $2.2B+ cost
+        </span>
+        <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold">
+          <i class="fa-solid fa-users mr-2"></i> 300,000+ employees affected
+        </span>
+        <span class="inline-flex items-center py-2 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold">
+          <i class="fa-solid fa-calendar mr-2"></i> 2016-present
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="py-12 bg-secondary-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article class="prose prose-lg max-w-none">
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Failure</h2>
+          <p class="text-secondary-700 mb-4">
+            In February 2016, the Government of Canada launched Phoenix, a new pay system intended to consolidate payroll processing for over 300,000 federal employees. The system was built on IBM's PeopleSoft and was expected to save $70 million annually by eliminating 1,200 payroll advisor positions.
+          </p>
+          <p class="text-secondary-700 mb-4">
+            Within weeks, the system began generating catastrophic errors. Employees received no pay, partial pay, or vastly incorrect amounts. Some were overpaid by tens of thousands of dollars and later faced demands for repayment. Others went months without income, forcing them to take out loans or access food banks.
+          </p>
+          <p class="text-secondary-700">
+            Nine years later, the problem persists. The government has spent over $2.2 billion trying to fix Phoenix, with no clear resolution in sight. A replacement system has been in development since 2018, but Phoenix continues to generate new errors faster than existing ones can be resolved.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Structural Analysis</h2>
+          <p class="text-secondary-700 mb-4">
+            From an information theory perspective, Phoenix failed because it attempted to automate a process where critical decision logic was tacit, not explicit.
+          </p>
+
+          <h3 class="text-xl font-semibold text-secondary-900 mt-6 mb-3">What Appeared Simple</h3>
+          <p class="text-secondary-700 mb-4">
+            On the surface, payroll seems straightforward: hours worked × rate = pay. The decision to consolidate seemed logical—why maintain regional payroll offices when a central system could handle everything?
+          </p>
+
+          <h3 class="text-xl font-semibold text-secondary-900 mt-6 mb-3">What Was Actually Complex</h3>
+          <p class="text-secondary-700 mb-4">
+            Federal payroll involved over 80,000 pay rules across different collective agreements, departments, and employment classifications. But the complexity wasn't just in the rules—it was in how experienced payroll advisors interpreted ambiguous situations:
+          </p>
+          <ul class="list-disc list-inside text-secondary-700 mb-4 space-y-2">
+            <li>"This employee transferred departments mid-pay-period during a retroactive salary adjustment while on partial leave"</li>
+            <li>"This person's acting appointment overlapped with a reclassification request"</li>
+            <li>"This employee has three simultaneous part-time positions with different collective agreements"</li>
+          </ul>
+          <p class="text-secondary-700">
+            Experienced payroll advisors handled these cases through judgment built over years. They knew which rules took precedence, when exceptions applied, and how to resolve conflicts. This knowledge was never documented—it existed only in their expertise.
+          </p>
+        </div>
+
+        <div class="bg-red-50 rounded-xl p-8 border-2 border-red-200 mb-8">
+          <h2 class="text-2xl font-bold text-secondary-900 mb-4">The Tacit Knowledge Gap</h2>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <div>
+                <p class="text-secondary-800 font-semibold">1,200 payroll advisors were laid off</p>
+                <p class="text-secondary-600 text-sm">Their decades of accumulated expertise in handling edge cases was eliminated before the system proved capable of replacing it.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <div>
+                <p class="text-secondary-800 font-semibold">Exception handling was assumed to be minimal</p>
+                <p class="text-secondary-600 text-sm">In reality, a significant percentage of pay transactions required human judgment that couldn't be codified.</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fa-solid fa-times-circle text-red-600 mt-1 mr-3 flex-shrink-0"></i>
+              <div>
+                <p class="text-secondary-800 font-semibold">Training was inadequate</p>
+                <p class="text-secondary-600 text-sm">New staff received a fraction of the training that experienced advisors had accumulated over years.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h2 class="text-2xl font-bold text-secondary-900 mb-4">What Structural Assessment Would Have Revealed</h2>
+          <p class="text-secondary-700 mb-4">
+            A proper structural assessment before investment would have identified:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="p-4 bg-primary-50 rounded-lg">
+              <h4 class="font-semibold text-secondary-900 mb-2">High Tacit Knowledge Dependency</h4>
+              <p class="text-secondary-600 text-sm">Analysis of exception handling would have shown that experienced advisors made thousands of judgment calls daily that had never been documented.</p>
+            </div>
+            <div class="p-4 bg-primary-50 rounded-lg">
+              <h4 class="font-semibold text-secondary-900 mb-2">Rule Conflict Complexity</h4>
+              <p class="text-secondary-600 text-sm">Mapping the 80,000+ pay rules would have revealed extensive conflicts requiring human arbitration.</p>
+            </div>
+            <div class="p-4 bg-primary-50 rounded-lg">
+              <h4 class="font-semibold text-secondary-900 mb-2">Workforce Reduction Risk</h4>
+              <p class="text-secondary-600 text-sm">The plan to eliminate 1,200 positions before proving the system should have been flagged as catastrophic risk.</p>
+            </div>
+            <div class="p-4 bg-primary-50 rounded-lg">
+              <h4 class="font-semibold text-secondary-900 mb-2">Recommended Path</h4>
+              <p class="text-secondary-600 text-sm">Pilot extensively before workforce reduction. Document tacit knowledge. Maintain human capability for exception handling.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-secondary-900 rounded-xl p-8 text-white">
+          <h2 class="text-2xl font-bold mb-4">The Lesson</h2>
+          <p class="text-secondary-300 mb-4">
+            Phoenix is a textbook example of automation failure caused by tacit knowledge dependency. The process appeared simple because the complexity was invisible—it lived in the expertise of workers who were eliminated before the system proved capable.
+          </p>
+          <p class="text-white font-semibold">
+            This failure was predictable. The $2.2 billion spent on remediation could have been avoided with structural assessment before investment.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <a href="case-studies.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <i class="fa-solid fa-arrow-left mr-2"></i> All Case Studies
+        </a>
+        <a href="knight-capital.html" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          Next: Knight Capital <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-secondary-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-secondary-900 mb-4">Avoid This Outcome</h2>
+      <p class="text-lg text-secondary-600 mb-8">Get a structural assessment before your next automation investment.</p>
+      <a href="mailto:info@eidosadvisory.com" class="btn-gradient text-white font-semibold rounded-lg px-8 py-4 inline-flex items-center justify-center shadow-lg text-lg">
+        Request Assessment <i class="fa-solid fa-arrow-right-long ml-3"></i>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-secondary-900 text-secondary-300 text-center py-6 text-xs">
+  &copy; <span id="yr"></span> EIDOS INC. dba Eidos Automation Structural Assessment.
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+
+  function toggleMenu() {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+  }
+
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener('click', toggleMenu);
+  }
+</script>
+</body>
+</html>
