@@ -115,59 +115,57 @@
     </div>
   </section>
 
-  <!-- REGULATED UTILITY -->
+  <!-- INTEGRATION ACROSS ISOLATED ENVIRONMENTS -->
   <section class="py-16 bg-white dark:bg-secondary-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Regulated Utility, Grid Modernization</h2>
-
-      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed mb-6">
-        A large-scale grid modernization program covering distribution management, field communications, and substation cybersecurity platforms. Multiple vendors delivering simultaneously into an environment that was federally regulated, with network segmentation constraints that dictated integration architecture. This was not enterprise IT. The compliance regime, the physical infrastructure dependencies, and the isolation requirements between operational technology and business networks created conditions where standard delivery playbooks did not apply.
-      </p>
-
-      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed mb-6">
-        I defined the readiness criteria for each platform, wrote operational specifications that covered service models, monitoring requirements, disaster recovery plans, and process runbooks. When vendors could not agree on integration approaches because their platforms operated in isolated environments with no supported path for data exchange, I wrote the specifications that defined how those boundaries would be managed. When go-live dates approached and the question of whether operations was actually prepared had no documented answer, I produced the evidence that let the decision be made with accountability behind it.
-      </p>
+      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Integration Across Isolated Environments</h2>
 
       <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed">
-        Over the course of the engagement, the readiness function produced more than 160 specifications. These covered everything from initial service design through disaster recovery, and they became the operating documentation that support teams used after the delivery organization moved on.
+        Most enterprise programs operate within a single technology environment. Some of the most complex engagements I have navigated involved multiple isolated environments, with their own security constraints and regulatory boundaries, that still needed to share operational data. That meant defining monitoring integrations where standard supported paths were missing between environments, designing data pipelines that respected trust boundaries while still meeting latency and completeness requirements, and defining alert routing logic that worked across different tooling stacks. The documents had to account for what the vendor platforms would and would not support, and where they lacked support, my job was to write the workarounds.
       </p>
     </div>
   </section>
 
-  <!-- FINANCIAL SERVICES -->
+  <!-- MULTI-VENDOR DELIVERY COORDINATION -->
   <section class="py-16 bg-secondary-50 dark:bg-secondary-950">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Financial Services, Process Automation</h2>
-
-      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed mb-6">
-        A financial services technology organization automating legacy transaction processing. The systems being targeted for automation had been running for years, and the documentation describing how they behaved was incomplete in places and wrong in others. The gap between how processes were documented and how they actually ran was where automation failures would come from, so mapping that gap was the first priority.
-      </p>
-
-      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed mb-6">
-        I wrote requirements that covered edge cases and boundary conditions where automation failures carried monetary consequences. When a transaction processing rule had exceptions that only senior operators knew about, those exceptions needed to be specified before automation could handle them. I also built the prioritization framework for investment decisions, identifying which automation candidates had the cleanest path to implementation and which ones had upstream dependencies that blocked independent sequencing.
-      </p>
+      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Multi-Vendor Delivery Coordination</h2>
 
       <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed">
-        The complication was legacy systems where institutional knowledge lived in the people who ran them, not in the documentation that described them. Getting that knowledge into written specifications that developers could build from required working with the operations teams who had been handling exceptions manually for years and formalizing what they knew into rules that could be tested and validated.
+        Most times, when programs have multiple vendors delivering on independent timelines, a specific type of problem tends to happen. The vendors manage their own scope competently, but the integration between their systems falls outside their scope unless someone claims it. My job is to work with teams to coordinate readiness across multiple major vendors simultaneously. This involves synchronizing their timelines, tracking integration dependencies against a shared baseline, and locking production sign-offs before a scope closes. The value is in surfacing the conflicts between vendors early enough to resolve them without delaying production.
       </p>
     </div>
   </section>
 
-  <!-- HEALTHCARE -->
+  <!-- READINESS DOCUMENTATION AT SCALE -->
   <section class="py-16 bg-white dark:bg-secondary-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Healthcare, Regulatory Compliance</h2>
-
-      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed mb-6">
-        A healthcare organization operating under HIPAA. The work involved translating regulatory requirements into technical specifications that preserved the regulatory intent through the development lifecycle. When a HIPAA requirement says something about access controls or data handling, the technical specification that developers work from needs to maintain traceability back to the original requirement. Otherwise the implementation drifts, and the drift only becomes visible during an audit.
-      </p>
-
-      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed mb-6">
-        I specified data integration requirements for analytic datasets that drew from multiple record systems. The challenge was that these systems used different data models, different field definitions, and different validation rules. Getting them to produce a unified analytic dataset required specifying the transformation and reconciliation logic at a level of detail that left no room for interpretation during implementation.
-      </p>
+      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Readiness Documentation at Scale</h2>
 
       <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed">
-        I also replaced judgment-based acceptance criteria with measurable thresholds that clinical, operational, and compliance stakeholders all agreed on. When "the data looks right" is the acceptance criterion, every review becomes a negotiation. When the acceptance criterion specifies the exact validation rules, match rates, and exception handling logic, the review becomes a confirmation.
+        Across a multi-year program, I wrote readiness documents covering who owns what and how that's decided, production go-live criteria, disaster recovery plans, post-launch support plans, and step-by-step procedures. The documents laid out what the specific teams needed to do their jobs across operations, cybersecurity, field engineering, and monitoring. The volume reflected the program's complexity, which included concurrent delivery tracks with their own sets of operational, compliance, and engineering stakeholders who needed different things defined before they could proceed.
+      </p>
+    </div>
+  </section>
+
+  <!-- REGULATORY REQUIREMENTS TRANSLATION -->
+  <section class="py-16 bg-secondary-50 dark:bg-secondary-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Regulatory Requirements Translation</h2>
+
+      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed">
+        Highly regulated environments add a layer that most program delivery models account for too late. Regulatory language has to survive the translation through business requirements, user stories, acceptance criteria, and implementation without losing the intent an auditor will test against. I have found this to be true across healthcare regulations, federal infrastructure compliance, and financial services operations. The consistent challenge remains the same: the translation steps introduce abstraction, and abstraction dilutes meaning unless someone is specifically preserving it.
+      </p>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS FOR COMPLEX BUSINESS LOGIC -->
+  <section class="py-16 bg-white dark:bg-secondary-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-secondary-900 dark:text-white mb-6">Requirements for Complex Business Logic</h2>
+
+      <p class="text-lg text-secondary-700 dark:text-secondary-300 leading-relaxed">
+        Most times, when automation and system modernization programs specify nominal behavior, the resulting systems handle clean inputs fine but break at the exceptions. The critical requirements work I have done involved defining the edge cases, boundary conditions, and exception handling behavior for systems where failures carried monetary, clinical, or compliance consequences. That meant mapping how systems actually behaved against how they were documented, identifying which gaps could be fixed independently, and writing requirements precise enough that developers could implement them without guessing and testers could validate them without judgment calls.
       </p>
     </div>
   </section>
